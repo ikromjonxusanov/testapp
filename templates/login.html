@@ -1,0 +1,25 @@
+{% extends "layout/base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show w-50 float-right mt-3 mr-3" role="alert">
+                <b>{{ message }}</b>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
+
+    <div class="container" style="margin-top: 100px">
+        <div class="jumbotron px-5 w-75 mx-auto">
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

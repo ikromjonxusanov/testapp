@@ -1,0 +1,26 @@
+{% extends "layout/base.html" %}
+{% block content %}
+    <div class="container mt-5">
+        <h3>{{ section }}</h3>
+        <hr>
+        <div class="row">
+            {% for lesson in section.lesson_set.all %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>
+                                {{ lesson.name }}
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <video width="100%">
+                              <source src="{{ lesson.file.url }}" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>Section Create
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

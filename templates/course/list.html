@@ -1,0 +1,64 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+    <div class="mx-5 mt-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <table class="table border">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Last Update</th>
+                        <th scope="col">View</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for obj in courses %}
+                        <tr>
+                            <th scope="row">{{ obj.id }}</th>
+                            <td>{{ obj.name }}</td>
+                            <td>{{ obj.create_at | date:"d.m.Y H:m" }}</td>
+                            <td>{{ obj.update_at | date:"d.m.Y H:m" }}</td>
+                            <td>
+                                <a href="{% url 'course-by-section-list' obj.id %}">
+                                    <i class="bi bi-eye-fill text-info" style="font-size: 20px"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <i class="bi bi-pencil-square text-primary" style="font-size: 20px"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <i class="bi bi-trash-fill text-danger" style="font-size: 20px"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card" style="background-color: rgba(139,255,97,0.3)">
+                    <div class="card-header">
+                        <h4 class="text-center">Add</h4>
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'course-create' %}" class="btn btn-outline-success w-100 mb-3">
+                            <b>Course <i class="bi bi-plus-circle"></i></b>
+                        </a>
+                        <a href="{% url 'section-create' %}" class="btn btn-outline-success w-100 mb-3">
+                            <b>Section <i class="bi bi-plus-circle"></i></b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
